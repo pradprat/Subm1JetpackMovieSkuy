@@ -1,7 +1,7 @@
 package com.example.subm1jetpackmovieskuy.data;
 
 public class Movie {
-    public Float popularity;
+    public Double popularity;
     public Integer voteCount;
     public Boolean video;
     public String posterPath;
@@ -11,7 +11,7 @@ public class Movie {
     public String originalLanguage;
     public String originalTitle;
     public String title;
-    public Float voteAverage;
+    public Double voteAverage;
     public String overview;
     public String releaseDate;
 
