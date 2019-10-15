@@ -7,7 +7,7 @@ import com.example.subm1jetpackmovieskuy.data.TvShow
 import java.util.ArrayList
 
 class DataDummy() {
-    fun getMovieDataList(): ArrayList<Movie> {
+    public fun getMovieDataList(): List<Movie> {
         val movies = ArrayList<Movie>()
         var movie: Movie
         movie = Movie(R.drawable.poster_a_start_is_born,
