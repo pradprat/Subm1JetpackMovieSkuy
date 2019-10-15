@@ -5,15 +5,9 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.example.subm1jetpackmovieskuy.data.Movie
-import com.example.subm1jetpackmovieskuy.movie.MovieViewModel
-import com.example.subm1jetpackmovieskuy.utils.DataDummy
 
 class MainActivity : AppCompatActivity() {
 

@@ -9,16 +9,14 @@ import com.example.subm1jetpackmovieskuy.utils.DataDummy
 class MovieViewModel : ViewModel() {
     private val movies = MutableLiveData<List<Movie>>()
 
-    fun getMovies(): LiveData<List<Movie>> {
-        return movies
-    }
-
-    fun initLoadMovies() {
-        var dataDummy = DataDummy()
+    init {
+        val dataDummy = DataDummy()
         synchronized(dataDummy) {
             movies.value = dataDummy.getMovieDataList()
         }
-//        movies.value = dataDummy.getMovieDataList()
-        // Do an asynchronous operation to fetch users.
+    }
+
+    fun getMovies(): LiveData<List<Movie>> {
+        return movies
     }
 }

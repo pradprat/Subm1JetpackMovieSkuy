@@ -4,8 +4,8 @@ import android.media.Image
 
 class Movie(
         var posterPath: Int,
-        var title: String?,
-        var overview: String?,
-        var releaseDate: String?) {
+        var title: String,
+        var overview: String,
+        var releaseDate: String) {
 
 }

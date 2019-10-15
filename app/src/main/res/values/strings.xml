@@ -2,4 +2,5 @@
     <string name="app_name">Subm 1 Jetpack Movie Skuy</string>
     <string name="title_movie">Movie</string>
     <string name="title_tv_show">Tv Show</string>
+    <string name="movie_poster_desc">poster of movie</string>
 </resources>

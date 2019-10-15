@@ -1,3 +1,11 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="text_h1">96sp</dimen>
+    <dimen name="text_h2">60sp</dimen>
+    <dimen name="text_h3">48sp</dimen>
+    <dimen name="text_h4">34sp</dimen>
+    <dimen name="text_h5">24sp</dimen>
+    <dimen name="text_h6">20sp</dimen>
+    <dimen name="text_body">16sp</dimen>
+    <dimen name="text_body2">14sp</dimen>
 </resources>
