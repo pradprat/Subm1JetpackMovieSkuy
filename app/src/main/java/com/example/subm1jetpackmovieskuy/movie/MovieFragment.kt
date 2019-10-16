@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.data.Movie
 import kotlinx.android.synthetic.main.fragment_movie.*
@@ -32,10 +35,11 @@ class MovieFragment : Fragment() {
             mMovies.addAll(it)
         })
 
+
 //        setting recyclerview
         rvMovie.apply {
             layoutManager = GridLayoutManager(activity, 2)
-            adapter = MovieAdapter(mMovies)
+            adapter = MovieAdapter(mMovies, context)
         }
     }
     companion object {
