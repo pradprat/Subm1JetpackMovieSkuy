@@ -23,11 +23,16 @@ class MovieFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val mMovies = ArrayList<Movie>()
+
+//        data handle viewmodel
         this.mViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
-        mViewModel!!.getMovies().observe(this, Observer { movies ->
-            mMovies.addAll(movies)
+        mViewModel!!.getMovies().observe(this, Observer {
+            mMovies.addAll(it)
         })
+
+//        setting recyclerview
         rvMovie.apply {
             layoutManager = GridLayoutManager(activity, 2)
             adapter = MovieAdapter(mMovies)

@@ -10,6 +10,7 @@ import com.example.subm1jetpackmovieskuy.data.Movie
 
 class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.item_movie, parent, false)) {
+
     var mPoster: ImageView? = null
     var mTitle: TextView? = null
 

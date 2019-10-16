@@ -8,8 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.subm1jetpackmovieskuy.R
+import com.example.subm1jetpackmovieskuy.data.TvShow
+import kotlinx.android.synthetic.main.fragment_tv_show.*
 
 class TvShowFragment : Fragment() {
 
@@ -22,8 +26,19 @@ class TvShowFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val tvShows = ArrayList<TvShow>()
+
         mViewModel = ViewModelProviders.of(this).get(TvShowViewModel::class.java)
-        // TODO: Use the ViewModel
+        mViewModel!!.getTvShows().observe(this, Observer {
+            tvShows.addAll(it)
+        })
+
+        rvTvShow.apply {
+            layoutManager = GridLayoutManager(activity, 2)
+            adapter = TvShowAdapter(tvShows)
+        }
+
     }
 
     companion object {

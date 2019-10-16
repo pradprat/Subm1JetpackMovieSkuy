@@ -11,9 +11,7 @@ class MovieViewModel : ViewModel() {
 
     init {
         val dataDummy = DataDummy()
-        synchronized(dataDummy) {
-            movies.value = dataDummy.getMovieDataList()
-        }
+        movies.value = dataDummy.getMovieDataList()
     }
 
     fun getMovies(): LiveData<List<Movie>> {

@@ -3,4 +3,5 @@
     <string name="title_movie">Movie</string>
     <string name="title_tv_show">Tv Show</string>
     <string name="movie_poster_desc">poster of movie</string>
+    <string name="tvshow_poster_desc">tv show poster</string>
 </resources>
