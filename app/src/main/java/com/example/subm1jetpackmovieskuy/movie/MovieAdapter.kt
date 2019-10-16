@@ -24,7 +24,7 @@ class MovieAdapter(private val movies: ArrayList<Movie>, context: Context) : Rec
         val movie: Movie = movies[position]
         holder.bind(movie)
         holder.setOnMovieItemClickListener(object : MovieItemClickListener {
-            override fun onCustomItemClickListener(view: View, position: Int) {
+            override fun onMovieItemClickListener(view: View, position: Int) {
                 Toast.makeText(mContext, "haha " + movie.title, Toast.LENGTH_LONG).show()
             }
 

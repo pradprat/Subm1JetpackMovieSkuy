@@ -36,7 +36,7 @@ class TvShowFragment : Fragment() {
 
         rvTvShow.apply {
             layoutManager = GridLayoutManager(activity, 2)
-            adapter = TvShowAdapter(tvShows)
+            adapter = TvShowAdapter(tvShows, context)
         }
 
     }

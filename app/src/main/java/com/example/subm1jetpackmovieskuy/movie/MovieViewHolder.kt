@@ -11,9 +11,7 @@ import com.example.subm1jetpackmovieskuy.data.Movie
 
 class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.item_movie, parent, false)), View.OnClickListener {
-    override fun onClick(v: View?) {
-        this.movieItemClickListener!!.onCustomItemClickListener(v!!, adapterPosition)
-    }
+
 
     var mPoster: ImageView
     var mTitle: TextView
@@ -35,5 +33,8 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         this.movieItemClickListener = itemClickListener
     }
 
+    override fun onClick(v: View?) {
+        this.movieItemClickListener!!.onMovieItemClickListener(v!!, adapterPosition)
+    }
 
 }
