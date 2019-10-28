@@ -6,4 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".TvShowDetailActivity">
 
+    <ImageView
+        android:id="@+id/ivPosterTvShowDetailBackdrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/poster_arrow" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@color/white_transparent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivPosterTvShowDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="80dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNameTvShowDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="sans-serif"
+                android:text="arrow"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="@dimen/text_h4"
+                app:layout_constraintTop_toBottomOf="@+id/ivPosterTvShowDetail" />
+
+            <TextView
+                android:id="@+id/tvReleaseTvShowDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif"
+                android:text="2019"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="@dimen/text_h5"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameTvShowDetail" />
+
+            <TextView
+                android:id="@+id/tvOverviewTvShowDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/lorem_ipsum"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="@dimen/text_body"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReleaseTvShowDetail" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

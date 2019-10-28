@@ -14,6 +14,11 @@ class MovieViewModel : ViewModel() {
         movies.value = dataDummy.getMovieDataList()
     }
 
+    fun setMovies() {
+        val dataDummy = DataDummy()
+        movies.value = dataDummy.getMovieDataList()
+    }
+
     fun getMovies(): LiveData<List<Movie>> {
         return movies
     }
