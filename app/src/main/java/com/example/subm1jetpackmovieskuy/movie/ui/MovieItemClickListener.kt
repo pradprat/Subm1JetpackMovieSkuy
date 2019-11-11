@@ -1,4 +1,4 @@
-package com.example.subm1jetpackmovieskuy.movie
+package com.example.subm1jetpackmovieskuy.movie.ui
 
 import android.view.View
 

@@ -1,17 +1,14 @@
-package com.example.subm1jetpackmovieskuy.tvShow
+package com.example.subm1jetpackmovieskuy.tvShow.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.subm1jetpackmovieskuy.R
-import com.example.subm1jetpackmovieskuy.data.TvShow
-import com.example.subm1jetpackmovieskuy.movie.MovieItemClickListener
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
+import com.squareup.picasso.Picasso
 
 
 class TvShowViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
@@ -28,8 +25,14 @@ class TvShowViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         itemView.setOnClickListener(this)
     }
 
-    public fun bind(tvShow: TvShow) {
-        mPoster.setImageResource(tvShow.posterPath)
+    fun bind(tvShow: TvShow) {
+        Picasso
+                .get()
+                .load("https://image.tmdb.org/t/p/w342"+tvShow.poster_path)
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.blank_poster)
+                .into(mPoster)
         mName.text = tvShow.name
     }
 

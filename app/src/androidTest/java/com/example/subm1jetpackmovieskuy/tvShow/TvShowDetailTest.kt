@@ -1,6 +1,5 @@
 package com.example.subm1jetpackmovieskuy.tvShow
 
-import android.view.View
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 //import androidx.test.espresso.contrib.RecyclerViewActions
@@ -12,7 +11,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
-import com.example.subm1jetpackmovieskuy.data.TvShow
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
+import com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowViewHolder
 import org.junit.Before
 
 import org.junit.Rule

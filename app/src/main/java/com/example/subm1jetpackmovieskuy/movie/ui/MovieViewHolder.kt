@@ -1,4 +1,4 @@
-package com.example.subm1jetpackmovieskuy.movie
+package com.example.subm1jetpackmovieskuy.movie.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.subm1jetpackmovieskuy.R
-import com.example.subm1jetpackmovieskuy.data.Movie
+import com.example.subm1jetpackmovieskuy.movie.data.Movie
+import com.squareup.picasso.Picasso
 
 class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.item_movie, parent, false)), View.OnClickListener {
@@ -24,8 +25,16 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
     fun bind(movie: Movie) {
-        mPoster.setImageResource(movie.posterPath)
+//        mPoster.setImageResource(movie.posterPath)
         mTitle.text = movie.title
+        //https://image.tmdb.org/t/p/w500
+        Picasso
+                .get()
+                .load("https://image.tmdb.org/t/p/w342"+movie.poster_path)
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.blank_poster)
+                .into(mPoster)
 
     }
 

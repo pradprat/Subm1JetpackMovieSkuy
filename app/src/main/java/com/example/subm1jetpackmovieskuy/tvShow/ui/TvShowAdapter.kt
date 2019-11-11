@@ -1,16 +1,12 @@
-package com.example.subm1jetpackmovieskuy.tvShow
+package com.example.subm1jetpackmovieskuy.tvShow.ui
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.subm1jetpackmovieskuy.MovieDetailActivity
-import com.example.subm1jetpackmovieskuy.TvShowDetailActivity
-import com.example.subm1jetpackmovieskuy.data.TvShow
-import com.example.subm1jetpackmovieskuy.movie.MovieItemClickListener
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 
 class TvShowAdapter(private val tvShows: ArrayList<TvShow>, context: Context) :
         RecyclerView.Adapter<TvShowViewHolder>() {

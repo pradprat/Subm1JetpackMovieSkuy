@@ -9,7 +9,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
-import com.example.subm1jetpackmovieskuy.data.Movie
+import com.example.subm1jetpackmovieskuy.movie.data.Movie
+import com.example.subm1jetpackmovieskuy.movie.ui.MovieViewHolder
 import org.junit.Before
 
 import org.junit.Rule

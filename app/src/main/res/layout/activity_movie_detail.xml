@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MovieDetailActivity">
+    tools:context=".movie.ui.MovieDetailActivity">
 
     <ImageView
         android:id="@+id/ivPosterMovieDetailBackdrop"
@@ -34,7 +34,7 @@
             <ImageView
                 android:id="@+id/ivPosterMovieDetail"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="240dp"
                 android:layout_margin="100dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/movie_poster_desc"

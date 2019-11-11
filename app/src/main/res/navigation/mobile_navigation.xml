@@ -6,13 +6,13 @@
 
     <fragment
         android:id="@+id/navigation_movie"
-        android:name="com.example.subm1jetpackmovieskuy.movie.MovieFragment"
+        android:name="com.example.subm1jetpackmovieskuy.movie.ui.MovieFragment"
         android:label="@string/title_movie"
         tools:layout="@layout/fragment_movie" />
 
     <fragment
         android:id="@+id/navigation_tv_show"
-        android:name="com.example.subm1jetpackmovieskuy.tvShow.TvShowFragment"
+        android:name="com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowFragment"
         android:label="@string/title_tv_show"
         tools:layout="@layout/fragment_tv_show" />
 </navigation>
