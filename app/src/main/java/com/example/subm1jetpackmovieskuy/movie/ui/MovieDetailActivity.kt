@@ -16,19 +16,19 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
 
-        val movie: Movie = intent.getParcelableExtra("movie_extra")
+        val movie: Movie? = intent.getParcelableExtra("movie_extra")
 
 
-        title = movie.title
-        Picasso.get().load("https://image.tmdb.org/t/p/w342"+movie.backdrop_path).fit().centerCrop()
+        title = movie?.title
+        Picasso.get().load("https://image.tmdb.org/t/p/w342"+movie?.backdrop_path).fit().centerCrop()
                 .placeholder(R.drawable.blank_poster)
                 .into(ivPosterMovieDetailBackdrop)
 //        ivPosterMovieDetailBackdrop.setImageResource(movie.posterPath)
-        Picasso.get().load("https://image.tmdb.org/t/p/w342"+movie.poster_path).fit().centerCrop()
+        Picasso.get().load("https://image.tmdb.org/t/p/w342"+movie?.poster_path).fit().centerCrop()
                 .placeholder(R.drawable.blank_poster)
                 .into(ivPosterMovieDetail)
 //        ivPosterMovieDetail.setImageResource(movie.posterPath)
-        tvTitleMovieDetail.setText(movie.title )
-        tvOverviewMovieDetail.setText(" release : " + movie.release_date + " \n"+movie.overview)
+        tvTitleMovieDetail.setText(movie?.title )
+        tvOverviewMovieDetail.setText(" release : " + movie?.release_date + " \n"+movie?.overview)
     }
 }

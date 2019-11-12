@@ -1,6 +1,7 @@
 package com.example.subm1jetpackmovieskuy.tvShow
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 //import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -11,8 +12,11 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
+import com.example.subm1jetpackmovieskuy.data.source.LocalMain
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowViewHolder
+import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
+import org.junit.After
 import org.junit.Before
 
 import org.junit.Rule
@@ -21,12 +25,7 @@ import org.junit.Test
 //@RunWith(AndroidJUnit4::class)
 public class TvShowDetailTest {
 
-    var tvShowDummy = TvShow(
-            R.drawable.poster_arrow,
-            "Arrow",
-            "October 10, 2012",
-            "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow."
-    )
+    var tvShowDummy = LocalMain().getTvShows().get(0)
 
     @Rule
     @JvmField
@@ -34,8 +33,14 @@ public class TvShowDetailTest {
 
     @Before
     fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource)
+
         activityTestRule.activity
                 .fragmentManager.beginTransaction()
+    }
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource)
     }
 
     @Test
@@ -56,7 +61,7 @@ public class TvShowDetailTest {
 
 //        § Memastikan Activity TvShow Detail Menampilkan Detail yang sesuai dengan item yang dipilih
         onView(withId(R.id.tvNameTvShowDetail)).check(matches(ViewMatchers.withText(tvShowDummy.name)))
-        onView(withId(R.id.tvReleaseTvShowDetail)).check(matches(ViewMatchers.withText(tvShowDummy.firstAirDate)))
+        onView(withId(R.id.tvReleaseTvShowDetail)).check(matches(ViewMatchers.withText(tvShowDummy.first_air_date)))
         onView(withId(R.id.tvOverviewTvShowDetail)).check(matches(ViewMatchers.withText(tvShowDummy.overview)))
     }
 }
