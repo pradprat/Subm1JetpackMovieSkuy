@@ -9,5 +9,5 @@ import javax.inject.Inject
 class TvShowViewModel @Inject constructor(
         tvShowRepository: TvShowRepository
 ) : ViewModel() {
-    val tvShows : LiveData<List<TvShow>> = tvShowRepository.getPopularTvShows()
+    var tvShows : LiveData<List<TvShow>> = tvShowRepository.getPopularTvShows()
 }

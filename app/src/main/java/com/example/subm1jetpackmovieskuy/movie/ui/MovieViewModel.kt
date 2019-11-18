@@ -7,13 +7,9 @@ import com.example.subm1jetpackmovieskuy.movie.data.Movie
 import com.example.subm1jetpackmovieskuy.movie.data.MovieRepository
 import javax.inject.Inject
 
-class MovieViewModel @Inject constructor(
+class MovieViewModel constructor(
         movieRepository: MovieRepository
 ) : ViewModel() {
-    val movieVM = MutableLiveData<String>()
-    val movies : LiveData<List<Movie>> = movieRepository.getPopularMovies()
+    var movies : LiveData<List<Movie>> = movieRepository.getPopularMovies()
 
-    fun setMovieVM(movie: String) {
-        movieVM.setValue(movie)
-    }
 }
