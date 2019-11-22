@@ -1,4 +1,4 @@
-package com.example.subm1jetpackmovieskuy.movie.ui
+package com.example.subm1jetpackmovieskuy.favorites
 
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +14,11 @@ import com.example.subm1jetpackmovieskuy.movie.data.MovieRepository
 import com.example.subm1jetpackmovieskuy.data.source.Webservice
 import com.example.subm1jetpackmovieskuy.data.source.room.MovieDao
 import com.example.subm1jetpackmovieskuy.data.source.room.MyRoomDatabase
+import com.example.subm1jetpackmovieskuy.movie.ui.MovieAdapter
+import com.example.subm1jetpackmovieskuy.movie.ui.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movie.*
 
-class MovieFragment : Fragment() {
+class FavoritesFragment : Fragment() {
     private lateinit var mViewModel: MovieViewModel
     private lateinit var mMovieRepository: MovieRepository
     private lateinit var mWebservice: Webservice
@@ -51,8 +53,8 @@ class MovieFragment : Fragment() {
 
     }
     companion object {
-        fun newInstance(): MovieFragment {
-            return MovieFragment()
+        fun newInstance(): FavoritesFragment {
+            return FavoritesFragment()
         }
     }
 

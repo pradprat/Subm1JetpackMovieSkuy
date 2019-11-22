@@ -14,5 +14,18 @@
         android:id="@+id/navigation_tv_show"
         android:name="com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowFragment"
         android:label="@string/title_tv_show"
+        tools:layout="@layout/fragment_tv_show"/>
+
+    <fragment
+        android:id="@+id/navigation_favorites_movie"
+        android:name="com.example.subm1jetpackmovieskuy.favorites.FavoritesFragment"
+        android:label="@string/title_FavoriteMovies"
+        tools:layout="@layout/fragment_movie" />
+
+    <fragment
+        android:id="@+id/navigation_favorites_tv_show"
+        android:name="com.example.subm1jetpackmovieskuy.favorites.FavoritesFragment"
+        android:label="@string/title_FavoriteTvShows"
         tools:layout="@layout/fragment_tv_show" />
+
 </navigation>

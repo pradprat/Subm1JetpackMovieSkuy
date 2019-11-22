@@ -11,4 +11,14 @@
         android:icon="@drawable/ic_live_tv_black"
         android:title="@string/title_tv_show" />
 
+    <item
+        android:id="@+id/navigation_favorites_movie"
+        android:icon="@drawable/ic_bookmarks_black_24px"
+        android:title="@string/favorite_movies" />
+
+    <item
+        android:id="@+id/navigation_favorites_tv_show"
+        android:icon="@drawable/ic_bookmarks_black_24px"
+        android:title="@string/favorite_tv_shows" />
+
 </menu>

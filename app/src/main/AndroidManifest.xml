@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.subm1jetpackmovieskuy">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".data.source.ApiMain"
         android:allowBackup="true"
@@ -10,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tvShow.ui.TvShowDetailActivity"></activity>
+        <activity android:name=".movie.Favorite.MovieFavoriteActivity"></activity>
+        <activity android:name=".tvShow.ui.TvShowDetailActivity" />
         <activity android:name=".movie.ui.MovieDetailActivity" />
         <activity
             android:name=".MainActivity"
