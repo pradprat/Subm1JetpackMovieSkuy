@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-class MovieRepository @Inject constructor(
+class MovieRepository constructor(
         private val remoteRepository: RemoteRepository,
         private val localRepository: LocalRepository,
         private val appExecutors: AppExecutors
@@ -24,15 +24,12 @@ class MovieRepository @Inject constructor(
             override fun loadFromDB(): LiveData<List<Movie>> {
                 return  localRepository.getMoviesAsLiveData()
             }
-
             override fun shouldFetch(data: List<Movie>): Boolean? {
                 return data.isEmpty()
             }
-
             override fun createCall(): LiveData<ApiResponse<List<Movie>>> {
                 return remoteRepository.getMoviesAsLiveData()
             }
-
             override fun saveCallResult(data: List<Movie>) {
                 for (movie in data) {
                     localRepository.insertMovie(movie)

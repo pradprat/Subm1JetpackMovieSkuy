@@ -2,60 +2,49 @@ package com.example.subm1jetpackmovieskuy.tvShow.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Entity
+@Parcelize
 data class TvShow(
-        @SerializedName("original_name") val original_name: String?,
-        @SerializedName("name") val name: String?,
-        @SerializedName("popularity") val popularity: Double,
-        @SerializedName("vote_count") val vote_count: Int,
-        @SerializedName("first_air_date") val first_air_date: String?,
-        @SerializedName("backdrop_path") val backdrop_path: String?,
-        @SerializedName("original_language") val original_language: String?,
-        @SerializedName("id") val id: Int,
-        @SerializedName("vote_average") val vote_average: Double,
-        @SerializedName("overview") val overview: String?,
-        @SerializedName("poster_path") val poster_path: String?
-):Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readDouble(),
-            parcel.readInt(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readInt(),
-            parcel.readDouble(),
-            parcel.readString(),
-            parcel.readString()) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(original_name)
-        parcel.writeString(name)
-        parcel.writeDouble(popularity)
-        parcel.writeInt(vote_count)
-        parcel.writeString(first_air_date)
-        parcel.writeString(backdrop_path)
-        parcel.writeString(original_language)
-        parcel.writeInt(id)
-        parcel.writeDouble(vote_average)
-        parcel.writeString(overview)
-        parcel.writeString(poster_path)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<TvShow> {
-        override fun createFromParcel(parcel: Parcel): TvShow {
-            return TvShow(parcel)
-        }
-
-        override fun newArray(size: Int): Array<TvShow?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+        @ColumnInfo(name="original_name")
+        @SerializedName("original_name")
+        val original_name: String?,
+        @ColumnInfo(name="name")
+        @SerializedName("name")
+        val name: String?,
+        @ColumnInfo(name="popularity")
+        @SerializedName("popularity")
+        val popularity: Double,
+        @ColumnInfo(name="vote_count")
+        @SerializedName("vote_count")
+        val vote_count: Int,
+        @ColumnInfo(name="first_air_date")
+        @SerializedName("first_air_date")
+        val first_air_date: String?,
+        @ColumnInfo(name="backdrop_path")
+        @SerializedName("backdrop_path")
+        val backdrop_path: String?,
+        @ColumnInfo(name="original_language")
+        @SerializedName("original_language")
+        val original_language: String?,
+        @PrimaryKey
+        @NonNull
+        @ColumnInfo(name="id")
+        @SerializedName("id")
+        val id: Int,
+        @ColumnInfo(name="vote_average")
+        @SerializedName("vote_average")
+        val vote_average: Double,
+        @ColumnInfo(name="overview")
+        @SerializedName("overview")
+        val overview: String?,
+        @ColumnInfo(name="poster_path")
+        @SerializedName("poster_path")
+        val poster_path: String?
+):Parcelable

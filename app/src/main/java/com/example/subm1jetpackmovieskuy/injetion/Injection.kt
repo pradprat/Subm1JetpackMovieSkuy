@@ -6,6 +6,7 @@ import com.example.subm1jetpackmovieskuy.data.source.remote.RemoteRepository
 import com.example.subm1jetpackmovieskuy.data.source.room.LocalRepository
 import com.example.subm1jetpackmovieskuy.data.source.room.RoomDb
 import com.example.subm1jetpackmovieskuy.movie.data.MovieRepository
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShowRepository
 import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 
 class Injection(){
@@ -18,4 +19,14 @@ class Injection(){
 
             return MovieRepository(remoteRepository,localRepository,appExecutors)
         }
+
+    fun tvShowRepository(application: Application): TvShowRepository{
+        val roomdb = RoomDb.getInstance(application)
+
+        var remoteRepository = RemoteRepository(ApiMain().services)
+        var localRepository = LocalRepository(roomdb.roomDao())
+        val appExecutors = AppExecutors()
+
+        return TvShowRepository(remoteRepository,localRepository,appExecutors)
+    }
 }

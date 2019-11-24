@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import com.example.subm1jetpackmovieskuy.data.source.LocalMain
 import com.example.subm1jetpackmovieskuy.movie.data.Movie
 import com.example.subm1jetpackmovieskuy.movie.data.MovieResponse
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShowResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +25,23 @@ class RemoteRepository constructor(private val webservice: Webservice) {
             }
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                var localMain = LocalMain()
+                EspressoIdlingResource.decrement();
+            }
+        })
+        return data
+    }
+
+    fun getTvShowsAsLiveData(): LiveData<ApiResponse<List<TvShow>>> {
+        val data = MutableLiveData<ApiResponse<List<TvShow>>>()
+        EspressoIdlingResource.increment();
+        webservice.getPopularTvShows().enqueue(object : Callback<TvShowResponse> {
+            override fun onResponse(call: Call<TvShowResponse>, response: Response<TvShowResponse>) {
+                data.value = ApiResponse.success(response.body()!!.results)
+                EspressoIdlingResource.decrement();
+            }
+
+            override fun onFailure(call: Call<TvShowResponse>, t: Throwable) {
                 var localMain = LocalMain()
                 EspressoIdlingResource.decrement();
             }
