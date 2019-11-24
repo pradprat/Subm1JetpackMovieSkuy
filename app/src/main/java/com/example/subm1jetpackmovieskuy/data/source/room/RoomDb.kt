@@ -8,7 +8,7 @@ import com.example.subm1jetpackmovieskuy.movie.data.Movie
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 
 
-@Database(entities = [Movie::class,TvShow::class], version = 2, exportSchema = false)
+@Database(entities = [Movie::class,TvShow::class], version = 3, exportSchema = false)
 abstract class RoomDb : RoomDatabase() {
 
     abstract fun roomDao(): RoomDao

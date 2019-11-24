@@ -46,5 +46,7 @@ data class TvShow(
         val overview: String?,
         @ColumnInfo(name="poster_path")
         @SerializedName("poster_path")
-        val poster_path: String?
+        val poster_path: String?,
+        @ColumnInfo(name="is_favorite")
+        var is_favorite:Int = 0
 ):Parcelable

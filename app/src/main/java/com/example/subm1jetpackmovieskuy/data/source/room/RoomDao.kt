@@ -12,6 +12,9 @@ interface RoomDao {
     @get:WorkerThread
     @get:Query("SELECT * FROM movie")
     val movies: LiveData<List<Movie>>
+    @get:WorkerThread
+    @get:Query("SELECT * FROM movie WHERE is_favorite = 1")
+    val favoriteMovies: LiveData<List<Movie>>
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertMovies(movies: List<Movie>)
     @Insert(onConflict = OnConflictStrategy.FAIL)
@@ -26,6 +29,9 @@ interface RoomDao {
     @get:WorkerThread
     @get:Query("SELECT * FROM tvshow")
     val tvShows: LiveData<List<TvShow>>
+    @get:WorkerThread
+    @get:Query("SELECT * FROM tvshow WHERE is_favorite = 1")
+    val favoriteTvShows: LiveData<List<TvShow>>
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertTvShows(tvShows: List<TvShow>)
     @Insert(onConflict = OnConflictStrategy.FAIL)

@@ -52,5 +52,7 @@ class Movie(
         val overview: String?,
         @ColumnInfo(name="release_date")
         @SerializedName("release_date")
-        val release_date: String?
+        val release_date: String?,
+        @ColumnInfo(name="is_favorite")
+        var is_favorite:Int = 0
 ) : Parcelable
