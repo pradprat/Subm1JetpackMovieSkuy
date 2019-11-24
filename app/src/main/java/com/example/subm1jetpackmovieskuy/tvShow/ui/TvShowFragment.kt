@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
-import com.example.subm1jetpackmovieskuy.data.source.ApiMain
+import com.example.subm1jetpackmovieskuy.data.source.remote.ApiMain
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShowRepository
-import com.example.subm1jetpackmovieskuy.data.source.Webservice
+import com.example.subm1jetpackmovieskuy.data.source.remote.Webservice
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 
 

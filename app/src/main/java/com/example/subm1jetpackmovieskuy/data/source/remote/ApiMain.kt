@@ -1,4 +1,4 @@
-package com.example.subm1jetpackmovieskuy.data.source
+package com.example.subm1jetpackmovieskuy.data.source.remote
 
 import android.app.Application
 import com.example.subm1jetpackmovieskuy.BuildConfig

@@ -1,4 +1,4 @@
-package com.example.subm1jetpackmovieskuy.data.source
+package com.example.subm1jetpackmovieskuy.data.source.remote
 
 import com.example.subm1jetpackmovieskuy.movie.data.MovieResponse
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShowResponse

@@ -3,7 +3,7 @@ package com.example.subm1jetpackmovieskuy.tvShow.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.subm1jetpackmovieskuy.data.source.LocalMain
-import com.example.subm1jetpackmovieskuy.data.source.Webservice
+import com.example.subm1jetpackmovieskuy.data.source.remote.Webservice
 import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback

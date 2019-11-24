@@ -1,36 +1,43 @@
 package com.example.subm1jetpackmovieskuy.movie.data
 
 import androidx.lifecycle.LiveData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import androidx.lifecycle.MutableLiveData
-import com.example.subm1jetpackmovieskuy.data.source.LocalMain
-import com.example.subm1jetpackmovieskuy.data.source.Webservice
-import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
+import com.example.subm1jetpackmovieskuy.data.source.remote.ApiResponse
+import com.example.subm1jetpackmovieskuy.data.source.remote.NetworkBoundResource
+import com.example.subm1jetpackmovieskuy.data.source.remote.RemoteRepository
+import com.example.subm1jetpackmovieskuy.data.source.room.LocalRepository
+import com.example.subm1jetpackmovieskuy.utils.AppExecutors
+import com.example.subm1jetpackmovieskuy.utils.vo.Resource
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
+
 @Singleton
 class MovieRepository @Inject constructor(
-        private val webservice: Webservice
+        private val remoteRepository: RemoteRepository,
+        private val localRepository: LocalRepository,
+        private val appExecutors: AppExecutors
 ) {
 
-    val data = MutableLiveData<List<Movie>>()
-    fun getPopularMovies(): LiveData<List<Movie>> {
-        EspressoIdlingResource.increment();
-        webservice.getPopularMovies().enqueue(object : Callback<MovieResponse> {
-            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                data.value = response.body()?.results
-                EspressoIdlingResource.decrement();
+    fun getMovies(): LiveData<Resource<List<Movie>>> {
+        return object: NetworkBoundResource<List<Movie>,List<Movie>>(appExecutors){
+            override fun loadFromDB(): LiveData<List<Movie>> {
+                return  localRepository.getMoviesAsLiveData()
             }
 
-            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                var localMain = LocalMain()
-                data.value = localMain.getMovies()
-                EspressoIdlingResource.decrement();
+            override fun shouldFetch(data: List<Movie>): Boolean? {
+                return data.isEmpty()
             }
-        })
-        return data
+
+            override fun createCall(): LiveData<ApiResponse<List<Movie>>> {
+                return remoteRepository.getMoviesAsLiveData()
+            }
+
+            override fun saveCallResult(data: List<Movie>) {
+                for (movie in data) {
+                    localRepository.insertMovie(movie)
+                }
+            }
+        }.asLiveData()
     }
 }

@@ -11,9 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.movie.data.Movie
-import com.example.subm1jetpackmovieskuy.data.source.ApiMain
+import com.example.subm1jetpackmovieskuy.data.source.remote.ApiMain
 import com.example.subm1jetpackmovieskuy.movie.data.MovieRepository
-import com.example.subm1jetpackmovieskuy.data.source.Webservice
+import com.example.subm1jetpackmovieskuy.data.source.remote.Webservice
+import com.example.subm1jetpackmovieskuy.injetion.Injection
+import com.example.subm1jetpackmovieskuy.utils.vo.Status
 import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment() {
@@ -31,15 +33,18 @@ class MovieFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         mWebservice = ApiMain().services
-        mMovieRepository = MovieRepository(mWebservice)
+        mMovieRepository = Injection().movieRepository(activity!!.application)
         mViewModel = MovieViewModel(mMovieRepository)
 
-        mViewModel.movies.observe(this, Observer {
-            if (!mMovies.containsAll(it)){
-                mMovies.addAll(it)
-                Log.d("--movie",mMovies.size.toString())
-                rvMovie.adapter?.notifyDataSetChanged()
+        mViewModel.movies.observe(this.viewLifecycleOwner, Observer {
+            if (it.status == Status.SUCCESS){
+                if (!mMovies.containsAll(it.data!!)){
+                    mMovies.addAll(it.data)
+                    Log.d("--movie",mMovies.size.toString())
+                    rvMovie.adapter?.notifyDataSetChanged()
+                }
             }
+
         })
 
         rvMovie.apply {

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.example.subm1jetpackmovieskuy.data.source.ApiMain
+import com.example.subm1jetpackmovieskuy.data.source.remote.ApiMain
 import com.example.subm1jetpackmovieskuy.movie.data.MovieResponse
 import retrofit2.Call
 import retrofit2.Callback
