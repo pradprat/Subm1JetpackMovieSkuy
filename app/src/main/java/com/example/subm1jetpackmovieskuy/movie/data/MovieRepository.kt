@@ -1,7 +1,7 @@
 package com.example.subm1jetpackmovieskuy.movie.data
 
 import androidx.lifecycle.LiveData
-import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.subm1jetpackmovieskuy.data.source.remote.ApiResponse
 import com.example.subm1jetpackmovieskuy.data.source.remote.NetworkBoundResource
@@ -10,10 +10,6 @@ import com.example.subm1jetpackmovieskuy.data.source.room.LocalRepository
 import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
 import javax.inject.Singleton
-import androidx.paging.LivePagedListBuilder
-
-
-
 
 
 @Singleton
@@ -26,7 +22,7 @@ class MovieRepository constructor(
     fun getPagedMovies(): LiveData<Resource<PagedList<Movie>>>{
         return object : NetworkBoundResource<PagedList<Movie>, List<Movie>>(appExecutors){
             override fun loadFromDB(): LiveData<PagedList<Movie>> {
-                return LivePagedListBuilder(localRepository.getPagingMovies(), /* page size */ 10).build()
+                return LivePagedListBuilder(localRepository.getPagingMovies(), 10).build()
             }
             override fun shouldFetch(data: PagedList<Movie>): Boolean? {
                 return data.isEmpty()
@@ -42,31 +38,13 @@ class MovieRepository constructor(
         }.asLiveData()
     }
 
-    fun getMovies(): LiveData<Resource<List<Movie>>> {
-        return object: NetworkBoundResource<List<Movie>,List<Movie>>(appExecutors){
-            override fun loadFromDB(): LiveData<List<Movie>> {
-                return  localRepository.getMoviesAsLiveData()
+    fun getFavMovies(): LiveData<Resource<PagedList<Movie>>> {
+        return object : NetworkBoundResource<PagedList<Movie>, List<Movie>>(appExecutors) {
+            override fun loadFromDB(): LiveData<PagedList<Movie>> {
+                return LivePagedListBuilder(localRepository.getFavMovies(), 10).build()
             }
-            override fun shouldFetch(data: List<Movie>): Boolean? {
-                return data.isEmpty()
-            }
-            override fun createCall(): LiveData<ApiResponse<List<Movie>>> {
-                return remoteRepository.getMoviesAsLiveData()
-            }
-            override fun saveCallResult(data: List<Movie>) {
-                for (movie in data) {
-                    localRepository.insertMovie(movie)
-                }
-            }
-        }.asLiveData()
-    }
 
-    fun getFavMovies(): LiveData<Resource<List<Movie>>> {
-        return object: NetworkBoundResource<List<Movie>,List<Movie>>(appExecutors){
-            override fun loadFromDB(): LiveData<List<Movie>> {
-                return  localRepository.getFavMoviesAsLiveData()
-            }
-            override fun shouldFetch(data: List<Movie>): Boolean? {
+            override fun shouldFetch(data: PagedList<Movie>): Boolean? {
                 return false
             }
             override fun createCall(): LiveData<ApiResponse<List<Movie>>> {

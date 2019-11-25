@@ -8,7 +8,6 @@ import com.example.subm1jetpackmovieskuy.data.source.remote.ApiResponse
 import com.example.subm1jetpackmovieskuy.data.source.remote.NetworkBoundResource
 import com.example.subm1jetpackmovieskuy.data.source.remote.RemoteRepository
 import com.example.subm1jetpackmovieskuy.data.source.room.LocalRepository
-import com.example.subm1jetpackmovieskuy.movie.data.Movie
 import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
 import javax.inject.Singleton
@@ -23,7 +22,7 @@ class TvShowRepository constructor(
     fun getPagedTvShows(): LiveData<Resource<PagedList<TvShow>>>{
         return object : NetworkBoundResource<PagedList<TvShow>, List<TvShow>>(appExecutors){
             override fun loadFromDB(): LiveData<PagedList<TvShow>> {
-                return LivePagedListBuilder(localRepository.getPagingTvShows(), /* page size */ 10).build()
+                return LivePagedListBuilder(localRepository.getPagingTvShows(), 10).build()
             }
             override fun shouldFetch(data: PagedList<TvShow>): Boolean? {
                 return data.isEmpty()
@@ -39,32 +38,13 @@ class TvShowRepository constructor(
         }.asLiveData()
     }
 
-    fun getTvShows(): LiveData<Resource<List<TvShow>>> {
-        return object: NetworkBoundResource<List<TvShow>,List<TvShow>>(appExecutors){
-            override fun loadFromDB(): LiveData<List<TvShow>> {
-                return  localRepository.getTvShowsAsLiveData()
+    fun getFavTvShows(): LiveData<Resource<PagedList<TvShow>>> {
+        return object : NetworkBoundResource<PagedList<TvShow>, List<TvShow>>(appExecutors) {
+            override fun loadFromDB(): LiveData<PagedList<TvShow>> {
+                return LivePagedListBuilder(localRepository.getFavTvShows(), 10).build()
             }
-            override fun shouldFetch(data: List<TvShow>): Boolean? {
-                return data.isEmpty()
-            }
-            override fun createCall(): LiveData<ApiResponse<List<TvShow>>> {
-                return remoteRepository.getTvShowsAsLiveData()
 
-            }
-            override fun saveCallResult(data: List<TvShow>) {
-                for (tvShow in data) {
-                    localRepository.insertTvShow(tvShow)
-                }
-            }
-        }.asLiveData()
-    }
-
-    fun getFavTvShows(): LiveData<Resource<List<TvShow>>> {
-        return object: NetworkBoundResource<List<TvShow>,List<TvShow>>(appExecutors){
-            override fun loadFromDB(): LiveData<List<TvShow>> {
-                return  localRepository.getFavTvShowsAsLiveData()
-            }
-            override fun shouldFetch(data: List<TvShow>): Boolean? {
+            override fun shouldFetch(data: PagedList<TvShow>): Boolean? {
                 return false
             }
             override fun createCall(): LiveData<ApiResponse<List<TvShow>>> {

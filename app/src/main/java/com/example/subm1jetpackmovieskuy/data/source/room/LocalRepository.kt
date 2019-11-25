@@ -1,15 +1,12 @@
 package com.example.subm1jetpackmovieskuy.data.source.room
 
-import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.example.subm1jetpackmovieskuy.movie.data.Movie
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
-import android.provider.ContactsContract.CommonDataKinds.Note
-import androidx.paging.DataSource
 
 
 class LocalRepository constructor(private val dao:RoomDao){
-    fun getMoviesAsLiveData(): LiveData<List<Movie>> =  dao.movies
-    fun getFavMoviesAsLiveData(): LiveData<List<Movie>> =  dao.favoriteMovies
+    fun getFavMovies(): DataSource.Factory<Int, Movie> = dao.favoriteMovies
     fun getPagingMovies(): DataSource.Factory<Int, Movie> = dao.moviesPaging
     fun insertMovies(movies: List<Movie>){dao.insertMovies(movies)}
     fun insertMovie(movie: Movie){dao.insertMovie(movie)}
@@ -17,8 +14,7 @@ class LocalRepository constructor(private val dao:RoomDao){
     fun deleteMovie(movie: Movie){dao.deleteMovie(movie)}
     fun getMovieById(movieId: String): Movie= dao.getMovieById(movieId)
 
-    fun getTvShowsAsLiveData(): LiveData<List<TvShow>> =  dao.tvShows
-    fun getFavTvShowsAsLiveData(): LiveData<List<TvShow>> =  dao.favoriteTvShows
+    fun getFavTvShows(): DataSource.Factory<Int, TvShow> = dao.favoriteTvShows
     fun getPagingTvShows(): DataSource.Factory<Int, TvShow> = dao.tvShowsPaging
     fun insertTvShows(tvShows: List<TvShow>){dao.insertTvShows(tvShows)}
     fun insertTvShow(tvShow: TvShow){dao.insertTvShow(tvShow)}

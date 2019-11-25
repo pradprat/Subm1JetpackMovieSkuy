@@ -1,7 +1,7 @@
 package com.example.subm1jetpackmovieskuy.data.source.room
 
-import androidx.lifecycle.LiveData
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
 import com.example.subm1jetpackmovieskuy.movie.data.Movie
@@ -18,7 +18,7 @@ interface RoomDao {
     val moviesPaging: DataSource.Factory<Int, Movie>
     @get:WorkerThread
     @get:Query("SELECT * FROM movie WHERE is_favorite = 1")
-    val favoriteMovies: LiveData<List<Movie>>
+    val favoriteMovies: DataSource.Factory<Int, Movie>
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovies(movies: List<Movie>)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -38,7 +38,7 @@ interface RoomDao {
     val tvShowsPaging: DataSource.Factory<Int, TvShow>
     @get:WorkerThread
     @get:Query("SELECT * FROM tvshow WHERE is_favorite = 1")
-    val favoriteTvShows: LiveData<List<TvShow>>
+    val favoriteTvShows: DataSource.Factory<Int, TvShow>
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertTvShows(tvShows: List<TvShow>)
     @Insert(onConflict = OnConflictStrategy.IGNORE)
