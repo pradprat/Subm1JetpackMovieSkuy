@@ -7,7 +7,6 @@ import com.example.subm1jetpackmovieskuy.data.source.remote.RemoteRepository
 import com.example.subm1jetpackmovieskuy.data.source.room.LocalRepository
 import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
-import javax.inject.Inject
 import javax.inject.Singleton
 
 
@@ -36,5 +35,36 @@ class MovieRepository constructor(
                 }
             }
         }.asLiveData()
+    }
+
+    fun getFavMovies(): LiveData<Resource<List<Movie>>> {
+        return object: NetworkBoundResource<List<Movie>,List<Movie>>(appExecutors){
+            override fun loadFromDB(): LiveData<List<Movie>> {
+                return  localRepository.getFavMoviesAsLiveData()
+            }
+            override fun shouldFetch(data: List<Movie>): Boolean? {
+                return false
+            }
+            override fun createCall(): LiveData<ApiResponse<List<Movie>>> {
+                return remoteRepository.getMoviesAsLiveData()
+            }
+            override fun saveCallResult(data: List<Movie>) {
+            }
+        }.asLiveData()
+    }
+
+    fun setFavorite(movie: Movie){
+        val runnable = {
+            if (movie.is_favorite == 1){
+                movie.is_favorite=0
+                localRepository.updateMovie(movie)
+            }else{
+                movie.is_favorite=1
+                localRepository.updateMovie(movie)
+            }
+        }
+        appExecutors.diskIO().execute(runnable)
+
+
     }
 }

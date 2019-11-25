@@ -9,8 +9,12 @@ import com.example.subm1jetpackmovieskuy.utils.vo.Resource
 import javax.inject.Inject
 
 class MovieViewModel constructor(
-        movieRepository: MovieRepository
+        private val movieRepository: MovieRepository
 ) : ViewModel() {
     var movies : LiveData<Resource<List<Movie>>> = movieRepository.getMovies()
+    var favMovies : LiveData<Resource<List<Movie>>> = movieRepository.getFavMovies()
+    fun isFavorited(movie: Movie){
+        return movieRepository.setFavorite(movie)
+    }
 
 }

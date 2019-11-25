@@ -38,7 +38,7 @@ class FavoriteMovieFragment : Fragment() {
         mMovieRepository = Injection().movieRepository(activity!!.application)
         mViewModel = MovieViewModel(mMovieRepository)
 
-        mViewModel.movies.observe(this.viewLifecycleOwner, Observer {
+        mViewModel.favMovies.observe(this.viewLifecycleOwner, Observer {
             if (it.status == Status.SUCCESS){
                 if (!mMovies.containsAll(it.data!!)){
                     mMovies.addAll(it.data)

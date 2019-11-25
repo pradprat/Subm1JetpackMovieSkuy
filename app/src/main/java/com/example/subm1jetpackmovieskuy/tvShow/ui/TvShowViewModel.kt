@@ -11,4 +11,5 @@ class TvShowViewModel @Inject constructor(
         tvShowRepository: TvShowRepository
 ) : ViewModel() {
     var tvShows : LiveData<Resource<List<TvShow>>> = tvShowRepository.getTvShows()
+    var favTvShows: LiveData<Resource<List<TvShow>>> = tvShowRepository.getFavTvShows()
 }

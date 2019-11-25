@@ -3,6 +3,8 @@ package com.example.subm1jetpackmovieskuy.data.source.remote
 import androidx.lifecycle.LiveData
 import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 import androidx.lifecycle.MediatorLiveData
+import com.example.subm1jetpackmovieskuy.movie.data.Movie
+import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
 
 
@@ -41,30 +43,32 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
 
         result.addSource(dbSource
         ) { newData -> result.setValue(Resource.loading(newData)) }
-        result.addSource(apiResponse) { response ->
+        if (apiResponse != null) {
+            result.addSource(apiResponse) { response ->
 
-            result.removeSource(apiResponse)
-            result.removeSource(dbSource)
+                result.removeSource(apiResponse)
+                result.removeSource(dbSource)
 
-            when (response.status) {
-                StatusResponse.SUCCESS -> mExecutors.diskIO().execute {
+                when (response.status) {
+                    StatusResponse.SUCCESS -> mExecutors.diskIO().execute {
 
-                    saveCallResult(response.body)
+                        saveCallResult(response.body)
 
-                    mExecutors.mainThread().execute {
+                        mExecutors.mainThread().execute {
+                            result.addSource(loadFromDB()
+                            ) { newData -> result.setValue(Resource.success(newData)) }
+                        }
+
+                    }
+
+                    StatusResponse.EMPTY -> mExecutors.mainThread().execute {
                         result.addSource(loadFromDB()
                         ) { newData -> result.setValue(Resource.success(newData)) }
                     }
-
-                }
-
-                StatusResponse.EMPTY -> mExecutors.mainThread().execute {
-                    result.addSource(loadFromDB()
-                    ) { newData -> result.setValue(Resource.success(newData)) }
-                }
-                StatusResponse.ERROR -> {
-                    onFetchFailed()
-                    result.addSource(dbSource) { newData -> result.setValue(response.message?.let { Resource.error(it, newData) }) }
+                    StatusResponse.ERROR -> {
+                        onFetchFailed()
+                        result.addSource(dbSource) { newData -> result.setValue(response.message?.let { Resource.error(it, newData) }) }
+                    }
                 }
             }
         }

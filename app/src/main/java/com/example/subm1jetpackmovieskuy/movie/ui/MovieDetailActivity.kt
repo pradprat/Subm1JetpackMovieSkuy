@@ -1,22 +1,42 @@
 package com.example.subm1jetpackmovieskuy.movie.ui
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.subm1jetpackmovieskuy.R
+import com.example.subm1jetpackmovieskuy.injetion.Injection
 import com.example.subm1jetpackmovieskuy.movie.data.Movie
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import org.jetbrains.anko.doAsync
+import java.time.Duration
+import javax.inject.Inject
 
 class MovieDetailActivity : AppCompatActivity() {
+
+    lateinit var viewModel: MovieViewModel
+    lateinit var movie: Movie
+    lateinit var view:View
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
 
-        val movie: Movie? = intent.getParcelableExtra("movie_extra")
+        movie = intent.getParcelableExtra("movie_extra")
+
+
+
+        viewModel = MovieViewModel(Injection().movieRepository(application))
 
 
         title = movie?.title
@@ -30,5 +50,29 @@ class MovieDetailActivity : AppCompatActivity() {
 //        ivPosterMovieDetail.setImageResource(movie.posterPath)
         tvTitleMovieDetail.setText(movie?.title )
         tvOverviewMovieDetail.setText(" release : " + movie?.release_date + " \n"+movie?.overview)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.fav_action -> {
+//                if (viewModel.isFavorited(movie)){
+//                        item.icon = ContextCompat.getDrawable(this,R.drawable.ic_favorite_24px)
+//                    Snackbar.make(getWindow().getDecorView(), movie.title+"",10)
+//                    Log.d("---","asdasdasd")
+//                }else{
+//                        item.icon = ContextCompat.getDrawable(this,R.drawable.ic_favorite_border_24px)
+//                    Snackbar.make(getWindow().getDecorView(), movie.title+"",10)
+//                    Log.d("---","asdasd------asd")
+//
+//                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

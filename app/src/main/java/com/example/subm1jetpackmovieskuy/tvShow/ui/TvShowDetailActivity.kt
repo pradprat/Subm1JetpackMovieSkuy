@@ -3,6 +3,8 @@ package com.example.subm1jetpackmovieskuy.tvShow.ui
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.squareup.picasso.Picasso
@@ -34,5 +36,10 @@ class TvShowDetailActivity : AppCompatActivity() {
         tvNameTvShowDetail.setText(tvShow.name)
         tvReleaseTvShowDetail.setText(tvShow.first_air_date)
         tvOverviewTvShowDetail.setText(tvShow.overview)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

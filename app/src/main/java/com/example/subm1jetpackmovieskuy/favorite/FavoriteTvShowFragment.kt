@@ -38,7 +38,7 @@ class FavoriteTvShowFragment : Fragment() {
         mTvShowRepository = Injection().tvShowRepository(activity!!.application)
         mViewModel = TvShowViewModel(mTvShowRepository)
 
-        mViewModel.tvShows.observe(this.viewLifecycleOwner, Observer {
+        mViewModel.favTvShows.observe(this.viewLifecycleOwner, Observer {
             if (it.status == Status.SUCCESS){
                 if (!mTvShows.containsAll(it.data!!)){
                     mTvShows.addAll(it.data)
