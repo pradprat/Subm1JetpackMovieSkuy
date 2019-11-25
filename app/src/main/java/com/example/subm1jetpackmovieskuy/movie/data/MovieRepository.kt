@@ -55,16 +55,8 @@ class MovieRepository constructor(
 
     fun setFavorite(movie: Movie){
         val runnable = {
-            if (movie.is_favorite == 1){
-                movie.is_favorite=0
-                localRepository.updateMovie(movie)
-            }else{
-                movie.is_favorite=1
-                localRepository.updateMovie(movie)
-            }
+            localRepository.updateMovie(movie)
         }
         appExecutors.diskIO().execute(runnable)
-
-
     }
 }

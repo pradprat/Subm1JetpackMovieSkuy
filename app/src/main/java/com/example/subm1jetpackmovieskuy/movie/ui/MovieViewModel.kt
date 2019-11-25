@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.subm1jetpackmovieskuy.movie.data.Movie
 import com.example.subm1jetpackmovieskuy.movie.data.MovieRepository
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
+import okhttp3.internal.notifyAll
 import javax.inject.Inject
 
 class MovieViewModel constructor(
@@ -13,8 +14,8 @@ class MovieViewModel constructor(
 ) : ViewModel() {
     var movies : LiveData<Resource<List<Movie>>> = movieRepository.getMovies()
     var favMovies : LiveData<Resource<List<Movie>>> = movieRepository.getFavMovies()
-    fun isFavorited(movie: Movie){
-        return movieRepository.setFavorite(movie)
+    fun setFavorite(movie: Movie){
+        movieRepository.setFavorite(movie)
     }
 
 }

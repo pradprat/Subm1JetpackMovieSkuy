@@ -41,7 +41,7 @@ class TvShowRepository constructor(
     fun getFavTvShows(): LiveData<Resource<List<TvShow>>> {
         return object: NetworkBoundResource<List<TvShow>,List<TvShow>>(appExecutors){
             override fun loadFromDB(): LiveData<List<TvShow>> {
-                return  localRepository.getTvShowsAsLiveData()
+                return  localRepository.getFavTvShowsAsLiveData()
             }
             override fun shouldFetch(data: List<TvShow>): Boolean? {
                 return false
@@ -53,5 +53,12 @@ class TvShowRepository constructor(
             override fun saveCallResult(data: List<TvShow>) {
             }
         }.asLiveData()
+    }
+
+    fun setFavorite(tvShow: TvShow){
+        val runnable = {
+            localRepository.updateTvShow(tvShow)
+        }
+        appExecutors.diskIO().execute(runnable)
     }
 }

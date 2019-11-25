@@ -87,7 +87,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
     <ImageView
-        android:id="@+id/activity_btn_movie_favorite"
+        android:id="@+id/activity_btn_tv_show_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/activity_btn_movie_back"
+        android:id="@+id/activity_btn_tv_show_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
