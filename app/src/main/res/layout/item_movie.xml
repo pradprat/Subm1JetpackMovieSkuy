@@ -6,34 +6,52 @@
     android:orientation="vertical"
     android:layout_margin="8dp">
 
-    <ImageView
-        android:id="@+id/item_movie_poster"
-        android:layout_width="200dp"
-        android:layout_height="260dp"
-        android:contentDescription="@string/movie_poster_desc"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        android:src="@drawable/poster_alita"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/item_movie_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:padding="16dp"
-        android:text="@string/title_movie"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_h6"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/item_movie_poster"
-        app:layout_constraintTop_toTopOf="@+id/item_movie_poster">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
 
-    </TextView>
+            <ImageView
+                android:id="@+id/item_movie_poster"
+                android:layout_width="200dp"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/movie_poster_desc"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_alita"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_movie_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:padding="16dp"
+                android:text="@string/title_movie"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_h6"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/item_movie_poster"
+                app:layout_constraintTop_toTopOf="@+id/item_movie_poster">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

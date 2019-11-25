@@ -81,6 +81,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.0.0'
     implementation 'org.jetbrains.anko:anko-common:0.9'
+    implementation 'androidx.paging:paging-runtime:2.1.0'
 
 
 }

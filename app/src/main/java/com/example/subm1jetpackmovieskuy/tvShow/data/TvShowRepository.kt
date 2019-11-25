@@ -2,6 +2,8 @@ package com.example.subm1jetpackmovieskuy.tvShow.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.example.subm1jetpackmovieskuy.data.source.remote.ApiResponse
 import com.example.subm1jetpackmovieskuy.data.source.remote.NetworkBoundResource
 import com.example.subm1jetpackmovieskuy.data.source.remote.RemoteRepository
@@ -17,6 +19,25 @@ class TvShowRepository constructor(
         private val localRepository: LocalRepository,
         private val appExecutors: AppExecutors
 ) {
+
+    fun getPagedTvShows(): LiveData<Resource<PagedList<TvShow>>>{
+        return object : NetworkBoundResource<PagedList<TvShow>, List<TvShow>>(appExecutors){
+            override fun loadFromDB(): LiveData<PagedList<TvShow>> {
+                return LivePagedListBuilder(localRepository.getPagingTvShows(), /* page size */ 10).build()
+            }
+            override fun shouldFetch(data: PagedList<TvShow>): Boolean? {
+                return data.isEmpty()
+            }
+            override fun createCall(): LiveData<ApiResponse<List<TvShow>>> {
+                return remoteRepository.getTvShowsAsLiveData()
+            }
+            override fun saveCallResult(data: List<TvShow>) {
+                for (tvShow in data) {
+                    localRepository.insertTvShow(tvShow)
+                }
+            }
+        }.asLiveData()
+    }
 
     fun getTvShows(): LiveData<Resource<List<TvShow>>> {
         return object: NetworkBoundResource<List<TvShow>,List<TvShow>>(appExecutors){

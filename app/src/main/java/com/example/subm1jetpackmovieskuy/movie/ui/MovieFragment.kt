@@ -17,11 +17,14 @@ import com.example.subm1jetpackmovieskuy.data.source.remote.Webservice
 import com.example.subm1jetpackmovieskuy.injetion.Injection
 import com.example.subm1jetpackmovieskuy.utils.vo.Status
 import kotlinx.android.synthetic.main.fragment_movie.*
+import android.widget.Toast
+
+
 
 class MovieFragment : Fragment() {
+    private lateinit var mPagedAdapter:MoviePagedListAdapter
     private lateinit var mViewModel: MovieViewModel
     private lateinit var mMovieRepository: MovieRepository
-    private lateinit var mWebservice: Webservice
     val mMovies = ArrayList<Movie>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,31 +35,33 @@ class MovieFragment : Fragment() {
         savedInstanceState?.putSerializable("myList", mMovies);
         super.onActivityCreated(savedInstanceState)
 
-        mWebservice = ApiMain().services
         mMovieRepository = Injection().movieRepository(activity!!.application)
         mViewModel = MovieViewModel(mMovieRepository)
+        mPagedAdapter = MoviePagedListAdapter(activity!!)
 
-        mViewModel.movies.observe(this.viewLifecycleOwner, Observer {
-            if (it.status == Status.SUCCESS){
-                if (!mMovies.containsAll(it.data!!)){
-                    mMovies.addAll(it.data)
-                    Log.d("--movie",mMovies.size.toString())
-                    rvMovie.adapter?.notifyDataSetChanged()
+        mViewModel.pagedMovies.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                when (it.status) {
+//                    Status.LOADING -> progressBar.setVisibility(View.VISIBLE)
+                    Status.SUCCESS -> {
+//                        progressBar.setVisibility(View.GONE)
+                        mPagedAdapter.submitList(it.data)
+                        mPagedAdapter.notifyDataSetChanged()
+
+                    }
+                    Status.ERROR -> {
+//                        progressBar.setVisibility(View.GONE)
+                        Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-
         })
 
         rvMovie.apply {
             layoutManager = GridLayoutManager(activity, 2)
-            adapter = MovieAdapter(mMovies, context)
+            adapter = mPagedAdapter
         }
 
-    }
-    companion object {
-        fun newInstance(): MovieFragment {
-            return MovieFragment()
-        }
     }
 
 }
