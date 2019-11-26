@@ -12,7 +12,7 @@ class LocalRepository constructor(private val dao:RoomDao){
     fun insertMovie(movie: Movie){dao.insertMovie(movie)}
     fun updateMovie(movie: Movie){dao.updateMovie(movie)}
     fun deleteMovie(movie: Movie){dao.deleteMovie(movie)}
-    fun getMovieById(movieId: String): Movie= dao.getMovieById(movieId)
+    fun getMovieById(movieId: Int): Movie= dao.getMovieById(movieId)
 
     fun getFavTvShows(): DataSource.Factory<Int, TvShow> = dao.favoriteTvShows
     fun getPagingTvShows(): DataSource.Factory<Int, TvShow> = dao.tvShowsPaging
@@ -20,5 +20,5 @@ class LocalRepository constructor(private val dao:RoomDao){
     fun insertTvShow(tvShow: TvShow){dao.insertTvShow(tvShow)}
     fun updateTvShow(tvShow: TvShow){dao.updateTvShow(tvShow)}
     fun deleteTvShow(tvShow: TvShow){dao.deleteTvShow(tvShow)}
-    fun getTvShowById(tvShowId: String): TvShow= dao.getTvShowById(tvShowId)
+    fun getTvShowById(tvShowId: Int): TvShow= dao.getTvShowById(tvShowId)
 }

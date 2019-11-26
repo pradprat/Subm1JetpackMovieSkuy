@@ -13,7 +13,9 @@ import androidx.test.rule.ActivityTestRule
 import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.data.source.LocalMain
+import com.example.subm1jetpackmovieskuy.data.source.room.RoomDb
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
+import com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowPagedListAdapter
 import com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowViewHolder
 import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
 import org.junit.After
@@ -23,7 +25,7 @@ import org.junit.Rule
 import org.junit.Test
 
 //@RunWith(AndroidJUnit4::class)
-public class TvShowDetailTest {
+class TvShowDetailTest {
 
     var tvShowDummy = LocalMain().getTvShows().get(0)
 
@@ -37,6 +39,8 @@ public class TvShowDetailTest {
 
         activityTestRule.activity
                 .fragmentManager.beginTransaction()
+        val roomDb = RoomDb.getInstance(androidx.test.InstrumentationRegistry.getContext())
+        tvShowDummy = roomDb.roomDao().tvShows.get(0)
     }
     @After
     fun tearDown() {
@@ -54,7 +58,7 @@ public class TvShowDetailTest {
         onView(withId(R.id.rvTvShow)).check(matches(isDisplayed()))
 
 //        § Memilih dan Membuka salahsatu item di RecyclerView TvShow
-        onView(withId(R.id.rvTvShow)).perform(RecyclerViewActions.actionOnItemAtPosition<TvShowViewHolder>(0, click()));
+        onView(withId(R.id.rvTvShow)).perform(RecyclerViewActions.actionOnItemAtPosition<TvShowPagedListAdapter.TvShowPagedViewHolder>(0, click()));
 
 //        § Memastikan berpindah activity ke Activity TvShow Detail
         onView(withId(R.id.ivPosterTvShowDetail)).check(matches(isDisplayed()));

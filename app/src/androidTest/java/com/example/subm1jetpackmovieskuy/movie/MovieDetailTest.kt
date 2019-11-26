@@ -4,12 +4,16 @@ package com.example.subm1jetpackmovieskuy.movie
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.data.source.LocalMain
+import com.example.subm1jetpackmovieskuy.data.source.room.RoomDb
+import com.example.subm1jetpackmovieskuy.movie.ui.MoviePagedListAdapter
 import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
@@ -18,7 +22,9 @@ import org.junit.Test
 
 //@RunWith(AndroidJUnit4::class)
 class MovieDetailTest {
+
     var movieDummy = LocalMain().getMovies().get(0)
+
 
     @Rule
     @JvmField
@@ -30,6 +36,11 @@ class MovieDetailTest {
 
         activityTestRule.activity
                 .fragmentManager.beginTransaction()
+
+
+        val roomDb = RoomDb.getInstance(androidx.test.InstrumentationRegistry.getContext())
+        var movies = roomDb.roomDao().movies
+        movieDummy = movies.get(0)
     }
     @After
     fun tearDown() {
@@ -43,7 +54,7 @@ class MovieDetailTest {
         onView(withId(R.id.rvMovie)).check(matches(isDisplayed()))
 
 //        § Memilih dan Membuka salahsatu item di RecyclerView Movie
-//        onView(withId(R.id.rvMovie)).perform(actionOnItemAtPosition<MovieViewHolder>(0, click()))
+        onView(withId(R.id.rvMovie)).perform(actionOnItemAtPosition<MoviePagedListAdapter.MoviePagedViewHolder>(0, click()))
 
 //        § Memastikan berpindah activity ke Movie Detail Activity
         onView(withId(R.id.ivPosterMovieDetail)).check(matches(isDisplayed()))
