@@ -13,7 +13,7 @@ class MovieViewModel constructor(
 ) : ViewModel() {
     var favMovies: LiveData<Resource<PagedList<Movie>>> = movieRepository.getFavMovies()
     var pagedMovies: LiveData<Resource<PagedList<Movie>>> = movieRepository.getPagedMovies()
-    fun setFavorite(movie: Movie){
+    fun setFavorite(movie: Movie) {
         movieRepository.setFavorite(movie)
     }
 

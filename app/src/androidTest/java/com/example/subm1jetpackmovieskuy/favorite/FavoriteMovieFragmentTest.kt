@@ -13,8 +13,6 @@ import com.example.subm1jetpackmovieskuy.data.source.room.RoomDb
 import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 
@@ -46,7 +44,7 @@ class FavoriteMovieFragmentTest {
     fun favoriteMovieFragment(){
 
 //        Menekan Tombol navigasi FavoriteTvShow
-        Espresso.onView(ViewMatchers.withId(R.id.navigation_movie_favorite)).perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.navigation_movie_favorite)).perform(ViewActions.click())
 
 //
 //        Membuka FavoriteTvShowFragment
@@ -55,7 +53,7 @@ class FavoriteMovieFragmentTest {
 //        Memastikan FavoriteTvShowFragment menampilkan RecyclerView
 //
 //        Memastikan RecyclerView menampilkan jumlah item yang sesuai dengan yang diharapkan
-        Espresso.onView(ViewMatchers.withId(R.id.rvMovie)).check((RecyclerViewItemCountAssertion(count)));
+        Espresso.onView(ViewMatchers.withId(R.id.rvMovie)).check((RecyclerViewItemCountAssertion(count)))
 
     }
 

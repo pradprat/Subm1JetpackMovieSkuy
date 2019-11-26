@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-public class TvShowFragmentTest {
+class TvShowFragmentTest {
 
     @Rule
     @JvmField
@@ -50,6 +50,6 @@ public class TvShowFragmentTest {
         onView(withId(R.id.rvTvShow)).check(matches(isDisplayed()))
 
 //        § Memastikan RecyclerView menampilkan jumlah item yang sesuai dengan yang diharapkan
-        onView(withId(R.id.rvTvShow)).check((RecyclerViewItemCountAssertion(20)));
+        onView(withId(R.id.rvTvShow)).check((RecyclerViewItemCountAssertion(20)))
     }
 }

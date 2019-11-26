@@ -45,22 +45,45 @@ class RoomDbTest {
     @Test
     @Throws(Exception::class)
     fun writeAndReadFavMovie() {
-        val movie: Movie = LocalMain().getMovies().get(0)
-        userDao.updateMovie(movie)
-        movie.is_favorite=1
-        val movieFromDb = userDao.getMovieById(movie.id)
-        assertThat(movieFromDb.title, equalTo(movie.title))
-        assertThat(movieFromDb.is_favorite, equalTo(movie.is_favorite))
+        val movie: Movie = LocalMain().getMovies().get(9)
+        var movieFromDb = userDao.getMovieById(movie.id)
+        try {
+            movieFromDb.title.isNullOrEmpty()
+            movie.is_favorite = 1
+            userDao.insertTestMovie(movie)
+            movieFromDb = userDao.getMovieById(movie.id)
+            assertThat(movieFromDb.title, equalTo(movie.title))
+            assertThat(movieFromDb.is_favorite, equalTo(movie.is_favorite))
+        } catch (e: Exception) {
+            movie.is_favorite = 1
+            userDao.insertTestMovie(movie)
+            movieFromDb = userDao.getMovieById(movie.id)
+            assertThat(movieFromDb.title, equalTo(movie.title))
+            assertThat(movieFromDb.is_favorite, equalTo(movie.is_favorite))
+            userDao.deleteMovie(movie)
+        }
+
     }
 
     @Test
     @Throws(Exception::class)
     fun writeAndReadFavTvShow() {
-        val tvShow = LocalMain().getTvShows().get(0)
-        tvShow.is_favorite=1
-        userDao.updateTvShow(tvShow)
-        val tvShowFromDb = userDao.getTvShowById(tvShow.id)
-        assertThat(tvShowFromDb.name, equalTo(tvShow.name))
-        assertThat(tvShowFromDb.is_favorite, equalTo(tvShow.is_favorite))
+        val tvShow = LocalMain().getTvShows().get(9)
+        var tvShowFromDb = userDao.getTvShowById(tvShow.id)
+        try {
+            tvShowFromDb.name.isNullOrEmpty()
+            tvShow.is_favorite = 1
+            userDao.insertTestTvShow(tvShow)
+            tvShowFromDb = userDao.getTvShowById(tvShow.id)
+            assertThat(tvShowFromDb.name, equalTo(tvShow.name))
+            assertThat(tvShowFromDb.is_favorite, equalTo(tvShow.is_favorite))
+        } catch (e: Exception) {
+            tvShow.is_favorite = 1
+            userDao.insertTestTvShow(tvShow)
+            tvShowFromDb = userDao.getTvShowById(tvShow.id)
+            assertThat(tvShowFromDb.name, equalTo(tvShow.name))
+            assertThat(tvShowFromDb.is_favorite, equalTo(tvShow.is_favorite))
+            userDao.deleteTvShow(tvShow)
+        }
     }
 }

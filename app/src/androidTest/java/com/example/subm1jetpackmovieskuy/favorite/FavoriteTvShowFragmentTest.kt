@@ -1,31 +1,20 @@
 package com.example.subm1jetpackmovieskuy.favorite
 
 import RecyclerViewItemCountAssertion
-import android.app.Instrumentation
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.internal.inject.InstrumentationContext
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
-import com.example.subm1jetpackmovieskuy.data.source.room.LocalRepository
 import com.example.subm1jetpackmovieskuy.data.source.room.RoomDb
-import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import kotlin.coroutines.coroutineContext
 
 class FavoriteTvShowFragmentTest {
 
@@ -54,7 +43,7 @@ class FavoriteTvShowFragmentTest {
     fun favoriteTvShowFragment(){
 
 //        Menekan Tombol navigasi FavoriteTvShow
-        Espresso.onView(ViewMatchers.withId(R.id.navigation_tv_show_favorite)).perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.navigation_tv_show_favorite)).perform(ViewActions.click())
 
 //
 //        Membuka FavoriteTvShowFragment
@@ -63,7 +52,7 @@ class FavoriteTvShowFragmentTest {
 //        Memastikan FavoriteTvShowFragment menampilkan RecyclerView
 //
 //        Memastikan RecyclerView menampilkan jumlah item yang sesuai dengan yang diharapkan
-        Espresso.onView(ViewMatchers.withId(R.id.rvTvShow)).check((RecyclerViewItemCountAssertion(count)));
+        Espresso.onView(ViewMatchers.withId(R.id.rvTvShow)).check((RecyclerViewItemCountAssertion(count)))
 
     }
 }

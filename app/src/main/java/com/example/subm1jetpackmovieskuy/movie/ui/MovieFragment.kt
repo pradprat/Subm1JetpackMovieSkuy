@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_movie.*
 
 
 class MovieFragment : Fragment() {
-    private lateinit var mPagedAdapter:MoviePagedListAdapter
+    private lateinit var mPagedAdapter: MoviePagedListAdapter
     private lateinit var mViewModel: MovieViewModel
     private lateinit var mMovieRepository: MovieRepository
 
@@ -24,6 +24,7 @@ class MovieFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movie, container, false)
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

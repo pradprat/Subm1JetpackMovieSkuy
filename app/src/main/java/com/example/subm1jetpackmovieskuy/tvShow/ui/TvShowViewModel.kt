@@ -13,7 +13,7 @@ class TvShowViewModel @Inject constructor(
 ) : ViewModel() {
     var favTvShows: LiveData<Resource<PagedList<TvShow>>> = tvShowRepository.getFavTvShows()
     var pagedTvShows: LiveData<Resource<PagedList<TvShow>>> = tvShowRepository.getPagedTvShows()
-    fun setFavorite(tvShow: TvShow){
+    fun setFavorite(tvShow: TvShow) {
         tvShowRepository.setFavorite(tvShow)
     }
 }

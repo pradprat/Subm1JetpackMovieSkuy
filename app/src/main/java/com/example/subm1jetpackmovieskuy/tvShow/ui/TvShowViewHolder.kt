@@ -28,7 +28,7 @@ class TvShowViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     fun bind(tvShow: TvShow) {
         Picasso
                 .get()
-                .load("https://image.tmdb.org/t/p/w342"+tvShow.poster_path)
+                .load("https://image.tmdb.org/t/p/w342" + tvShow.poster_path)
                 .fit()
                 .centerCrop()
                 .placeholder(R.drawable.blank_poster)

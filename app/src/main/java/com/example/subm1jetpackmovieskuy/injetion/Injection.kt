@@ -9,24 +9,24 @@ import com.example.subm1jetpackmovieskuy.movie.data.MovieRepository
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShowRepository
 import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 
-class Injection(){
-        fun movieRepository(application: Application):MovieRepository{
-            val roomdb = RoomDb.getInstance(application)
-
-            var remoteRepository = RemoteRepository(ApiMain().services)
-            var localRepository = LocalRepository(roomdb.roomDao())
-            val appExecutors = AppExecutors()
-
-            return MovieRepository(remoteRepository,localRepository,appExecutors)
-        }
-
-    fun tvShowRepository(application: Application): TvShowRepository{
+class Injection {
+    fun movieRepository(application: Application): MovieRepository {
         val roomdb = RoomDb.getInstance(application)
 
         var remoteRepository = RemoteRepository(ApiMain().services)
         var localRepository = LocalRepository(roomdb.roomDao())
         val appExecutors = AppExecutors()
 
-        return TvShowRepository(remoteRepository,localRepository,appExecutors)
+        return MovieRepository(remoteRepository, localRepository, appExecutors)
+    }
+
+    fun tvShowRepository(application: Application): TvShowRepository {
+        val roomdb = RoomDb.getInstance(application)
+
+        var remoteRepository = RemoteRepository(ApiMain().services)
+        var localRepository = LocalRepository(roomdb.roomDao())
+        val appExecutors = AppExecutors()
+
+        return TvShowRepository(remoteRepository, localRepository, appExecutors)
     }
 }

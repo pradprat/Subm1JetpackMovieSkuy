@@ -1,9 +1,10 @@
 package com.example.subm1jetpackmovieskuy.tvShow
 
+//import androidx.test.espresso.contrib.RecyclerViewActions
+
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
-//import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -14,13 +15,10 @@ import com.example.subm1jetpackmovieskuy.MainActivity
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.data.source.LocalMain
 import com.example.subm1jetpackmovieskuy.data.source.room.RoomDb
-import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowPagedListAdapter
-import com.example.subm1jetpackmovieskuy.tvShow.ui.TvShowViewHolder
 import com.example.subm1jetpackmovieskuy.utils.EspressoIdlingResource
 import org.junit.After
 import org.junit.Before
-
 import org.junit.Rule
 import org.junit.Test
 
@@ -58,10 +56,10 @@ class TvShowDetailTest {
         onView(withId(R.id.rvTvShow)).check(matches(isDisplayed()))
 
 //        § Memilih dan Membuka salahsatu item di RecyclerView TvShow
-        onView(withId(R.id.rvTvShow)).perform(RecyclerViewActions.actionOnItemAtPosition<TvShowPagedListAdapter.TvShowPagedViewHolder>(0, click()));
+        onView(withId(R.id.rvTvShow)).perform(RecyclerViewActions.actionOnItemAtPosition<TvShowPagedListAdapter.TvShowPagedViewHolder>(0, click()))
 
 //        § Memastikan berpindah activity ke Activity TvShow Detail
-        onView(withId(R.id.ivPosterTvShowDetail)).check(matches(isDisplayed()));
+        onView(withId(R.id.ivPosterTvShowDetail)).check(matches(isDisplayed()))
 
 //        § Memastikan Activity TvShow Detail Menampilkan Detail yang sesuai dengan item yang dipilih
         onView(withId(R.id.tvNameTvShowDetail)).check(matches(ViewMatchers.withText(tvShowDummy.name)))

@@ -28,7 +28,7 @@ class MoviePagedListAdapter internal constructor(private val activity: Activity)
         if (movie != null) {
             Picasso
                     .get()
-                    .load("https://image.tmdb.org/t/p/w342"+movie.poster_path)
+                    .load("https://image.tmdb.org/t/p/w342" + movie.poster_path)
                     .fit()
                     .centerCrop()
                     .placeholder(R.drawable.blank_poster)
@@ -45,7 +45,7 @@ class MoviePagedListAdapter internal constructor(private val activity: Activity)
     inner class MoviePagedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mPoster: ImageView
         var mTitle: TextView
-        var mCardView:CardView
+        var mCardView: CardView
 
         init {
             mPoster = itemView.findViewById(R.id.item_movie_poster)

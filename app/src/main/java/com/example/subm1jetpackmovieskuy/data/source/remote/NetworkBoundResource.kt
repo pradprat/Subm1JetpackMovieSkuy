@@ -1,10 +1,8 @@
 package com.example.subm1jetpackmovieskuy.data.source.remote
 
 import androidx.lifecycle.LiveData
-import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 import androidx.lifecycle.MediatorLiveData
-import com.example.subm1jetpackmovieskuy.movie.data.Movie
-import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
+import com.example.subm1jetpackmovieskuy.utils.AppExecutors
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
 
 

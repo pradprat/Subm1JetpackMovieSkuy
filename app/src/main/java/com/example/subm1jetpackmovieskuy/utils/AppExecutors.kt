@@ -1,7 +1,6 @@
 package com.example.subm1jetpackmovieskuy.utils
 
 import android.os.Handler
-import androidx.annotation.NonNull
 import android.os.Looper
 import androidx.annotation.VisibleForTesting
 import java.util.concurrent.Executor
@@ -12,8 +11,7 @@ class AppExecutors @VisibleForTesting
 constructor(private val diskIO: Executor, private val networkIO: Executor, private val mainThread: Executor) {
 
     constructor() : this(DiskIOThreadExecutor(), Executors.newFixedThreadPool(THREAD_COUNT),
-            MainThreadExecutor()) {
-    }
+            MainThreadExecutor())
 
     fun diskIO(): Executor {
         return diskIO

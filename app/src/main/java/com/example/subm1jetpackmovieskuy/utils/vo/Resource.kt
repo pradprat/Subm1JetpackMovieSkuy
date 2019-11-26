@@ -1,7 +1,5 @@
 package com.example.subm1jetpackmovieskuy.utils.vo
 
-import android.os.AsyncTask
-
 class Resource<T>(val status: Status, val data: T?, val message: String?) {
 
     override fun equals(o: Any?): Boolean {

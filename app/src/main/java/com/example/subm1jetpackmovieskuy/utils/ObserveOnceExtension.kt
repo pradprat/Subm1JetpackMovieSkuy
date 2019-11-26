@@ -1,12 +1,9 @@
 package com.example.subm1jetpackmovieskuy.utils
 
+import androidx.annotation.Nullable
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import javax.xml.datatype.DatatypeConstants.SECONDS
-import android.R.attr.countDown
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.annotation.Nullable
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 

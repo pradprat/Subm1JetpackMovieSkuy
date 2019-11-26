@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.subm1jetpackmovieskuy.R
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.squareup.picasso.Picasso
+
 class TvShowPagedListAdapter internal constructor(private val activity: Activity) : PagedListAdapter<TvShow, TvShowPagedListAdapter.TvShowPagedViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowPagedViewHolder {
@@ -27,7 +28,7 @@ class TvShowPagedListAdapter internal constructor(private val activity: Activity
         if (tv_show != null) {
             Picasso
                     .get()
-                    .load("https://image.tmdb.org/t/p/w342"+tv_show.poster_path)
+                    .load("https://image.tmdb.org/t/p/w342" + tv_show.poster_path)
                     .fit()
                     .centerCrop()
                     .placeholder(R.drawable.blank_poster)
@@ -44,7 +45,7 @@ class TvShowPagedListAdapter internal constructor(private val activity: Activity
     inner class TvShowPagedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mPoster: ImageView
         var mTitle: TextView
-        var mCardView:CardView
+        var mCardView: CardView
 
         init {
             mPoster = itemView.findViewById(R.id.item_tvshow_poster)

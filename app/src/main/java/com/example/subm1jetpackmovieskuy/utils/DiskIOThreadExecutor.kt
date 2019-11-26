@@ -1,7 +1,5 @@
 package com.example.subm1jetpackmovieskuy.utils
 
-import android.os.AsyncTask.execute
-import androidx.annotation.NonNull
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 

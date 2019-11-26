@@ -19,17 +19,20 @@ class TvShowRepository constructor(
         private val appExecutors: AppExecutors
 ) {
 
-    fun getPagedTvShows(): LiveData<Resource<PagedList<TvShow>>>{
-        return object : NetworkBoundResource<PagedList<TvShow>, List<TvShow>>(appExecutors){
+    fun getPagedTvShows(): LiveData<Resource<PagedList<TvShow>>> {
+        return object : NetworkBoundResource<PagedList<TvShow>, List<TvShow>>(appExecutors) {
             override fun loadFromDB(): LiveData<PagedList<TvShow>> {
                 return LivePagedListBuilder(localRepository.getPagingTvShows(), 10).build()
             }
+
             override fun shouldFetch(data: PagedList<TvShow>): Boolean? {
                 return data.isEmpty()
             }
+
             override fun createCall(): LiveData<ApiResponse<List<TvShow>>> {
                 return remoteRepository.getTvShowsAsLiveData()
             }
+
             override fun saveCallResult(data: List<TvShow>) {
                 for (tvShow in data) {
                     localRepository.insertTvShow(tvShow)
@@ -47,16 +50,18 @@ class TvShowRepository constructor(
             override fun shouldFetch(data: PagedList<TvShow>): Boolean? {
                 return false
             }
+
             override fun createCall(): LiveData<ApiResponse<List<TvShow>>> {
                 return MutableLiveData<ApiResponse<List<TvShow>>>()
 
             }
+
             override fun saveCallResult(data: List<TvShow>) {
             }
         }.asLiveData()
     }
 
-    fun setFavorite(tvShow: TvShow){
+    fun setFavorite(tvShow: TvShow) {
         val runnable = {
             localRepository.updateTvShow(tvShow)
         }
