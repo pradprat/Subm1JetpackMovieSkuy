@@ -6,9 +6,8 @@ import androidx.paging.PagedList
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShow
 import com.example.subm1jetpackmovieskuy.tvShow.data.TvShowRepository
 import com.example.subm1jetpackmovieskuy.utils.vo.Resource
-import javax.inject.Inject
 
-class TvShowViewModel @Inject constructor(
+class TvShowViewModel constructor(
         private val tvShowRepository: TvShowRepository
 ) : ViewModel() {
     var favTvShows: LiveData<Resource<PagedList<TvShow>>> = tvShowRepository.getFavTvShows()
